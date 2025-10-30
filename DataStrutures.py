@@ -88,7 +88,12 @@ class circularQue:
 		else:
 			self.f = (self.f + 1) % self.Max 
 	    return item # type: ignore
-    def  # type: ignore
+    def  peek(self):
+        if (self.isEmpty):
+            return ("Queue is Empty")
+        return self.q[self.f]
+    def __str__(self):
+        return str([i for i in self.q if i!=0])
     
      
 
@@ -103,38 +108,60 @@ class linkedList:
 		self.head = None
 		self.current = None
 		self.size = 0
+
 	def isEmpty(self):
 		return self.head is None
-	def insert(self, data):
+    
+    # Inserting in the starting
+    def add(self, data):
+        newNode = Node(data)
+        if self.head None:
+            self.head = newNode
+            self.size += 1
+            return
+        newNode.next = self.head
+        self.head = newNode
+        self.size += 1
+
+    # Inserting at the end
+	def append(self, data):
+        newNode = Node(data)
 		if self.head is None:
-			self.head = Node(data)
-			self.current = self.head
+			self.head = newNode
 			self.size += 1
 			return
 		
-		self.current.next = Node(data)
-		self.current = self.current.next
+        temp = self.head
+        while temp.next != None:
+            temp = temp.next
+
+		temp.next = newNode
 		self.size += 1
 
-	def delete(self):
+    # only delete the first occurence of the element
+	def delete(self, key):
 		if self.head is None:
 			print("List is empty")
-		else:
-			self.head = self.head.next
-			if self.head is None:
-				self.current = None
-			else:
-				self.current = self.head
-		self.size -= 1
-	def get(self, idx = 0):
-		count = 0
-		current = self.head
-		while current:
-			if count==idx:
-				return current.data
-			current = current.next
-			count += 1
-		return "index out of range"
+            return
+        
+        if self.head.data == key:
+            self.head = self.head.next
+            self.size -= 1
+            return
+
+        temp = self.head.next
+        pre = self.head
+
+		while temp != None:
+            if(temp.data == key):
+                pre.next = temp.next
+                self.size -= 1
+                return
+
+            pre = temp
+            temp = temp.next
+        print("The element is not present")
+
 	def size(self):
 		return self.size
 	
@@ -146,37 +173,68 @@ class linkedList:
 			temp = temp.next
 		return s
 
-# class circularLL:
-# 	def __init__(self):
-# 		self.head = None
-# 		self.size = 0
-# 	def insert(self, data):
-# 		if(not self.head):
-# 			self.head = Node(data)
-# 			self.head.next = self.head
-# 			self.size += 1
-# 			return
-# 		nNode = Node(data)
-# 		temp = self.head
-# 		while(temp.next!= self.head):
-# 			temp = temp.next
-# 		temp.next = nNode
-# 		nNode.next = self.head
-# 		self.size += 1
-	
-# 	def delete(self, key):
-		
-# 		temp = self.head
-# 		post = temp.next if temp.next else None
-# 		while(temp != self.head):
-# 			if(temp.data == key):
-				
-# 				return
-# 			temp = temp.next
-# 	def __str__(self):
-		
-	
 
+# Circular LinkedList
+class circularLL:
+	def __init__(self):
+		self.head = None
+		self.size = 0
+
+    def isEmpty(self):
+        return self.head is None
+    
+    def append(self, data):
+        newNode = Node(data)
+        if self.head is None:
+            self.head = newNode
+
+        elif self.head.next is None:
+            self.head.next = newNode
+            newNode.next = self.head
+
+        else:
+            temp = self.head
+            while temp.next != self.head:
+                temp = temp.next
+                
+            newNode.next = self.head
+            temp.next = newNode
+        self.size += 1
+		
+	
+	def delete(self, key):
+        if self.head is None:
+            return "List is Empty"
+        
+        if self.head.data == key:
+            temp = self.head
+            while temp.next != self.head:
+                temp = temp.next
+            temp.next = self.head.next
+            self.size -= 1
+            return
+
+        temp = self.head.next
+        pre = self.head
+
+        while temp.next != self.head:
+            if temp.data == key:
+                pre.next = temp.next
+                self.size -= 1
+                return               
+            pre = temp
+            temp = temp.next
+        print("Element is not present in the list")
+		
+	def __str__(self):
+        s = ''
+		temp = self.head
+		while temp.next != self.head:
+			s += str(temp.data) + '->'
+			temp = temp.next
+		return s + str(temp.data)
+		
+	
 
 
 #trees
