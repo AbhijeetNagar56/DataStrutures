@@ -267,6 +267,7 @@ class gbt:
     def diameter(self, r):
         if(r == None):
             return 0
+        
         dwr = self.height(r.left) + self.height(r.right) + 1
 
         lsd = self.diameter(r.left)
@@ -278,25 +279,28 @@ class gbt:
 
     def delete(self, root, key):
         if root is None:
-            return root
-        if root.val > key:
-            root.left = self.delete(root.left, key)
-        elif root.val < key:
-            root.right = self.delete(root.right, key)
-        else:
-            if root.left is None:
-                return root.right
-            elif root.right is None:
-                return root.left
-            
-            temp = self.maxfromLST(root.left)
-            root.val = temp.val
-            root.left = self.delete(root.left, temp.val)
-        return root
-
-
-    
-            
+            return "key is not in tree"
+        if root.data == key:
+            # delete the node
+            if root.left == None and root.right == None:
+                root == None
+            elif root.left == None or root.right == None:
+                if root.left is None:
+                    root.data = root.left.data
+                    root.left = None
+                else:
+                    root.data = root.right.data
+                    root.right = None
+            else:
+                # leftmost node
+                temp = root
+                while temp.next:
+                    temp = temp.left
+                root.data = temp.data
+                temp = None
+        delete(root.left, key)
+        delete(root.right, key)
+  
     def levelorder(self, root):
         if(root == None):
             return
@@ -321,7 +325,7 @@ class gbt:
         if(r == None):
             self.root = nNode
             return
-        if(r.left == Non):
+        if(r.left == None):
             r.left = nNode
         elif(r.right == None):
             r.right = nNode
@@ -339,9 +343,11 @@ class gbt:
         self.inOrder(root.right)
         
 
+
 class bst:
     def __init__(self):
         self.root = None
+
     def allLeaf(self, r):
         if(r == None):
             return
@@ -349,10 +355,12 @@ class bst:
             print(r.val, end=" ")
         self.allLeaf(r.left)
         self.allLeaf(r.right)
+
     def height(self, r):
         if(r == None):
             return 0
         return max(self.height(r.left), self.height(r.right)) + 1
+
     def diameter(self, r):
         if(r == None):
             return 0
@@ -360,10 +368,13 @@ class bst:
         lsd = self.diameter(r.left)
         rsd = self.diameter(r.right)
         return max(dwr, lsd, rsd)
+    
+
     def maxfromLST(self, root):
         while root.right:
             root = root.right
         return root
+
     def delete(self, root, key):
         if root is None:
             return root
@@ -399,6 +410,7 @@ class bst:
                     q.append(c.left)
                 if(c.right):
                     q.append(c.right)
+
     def insert(self, r, key):
         nNode = node(key)
         if(r == None):
@@ -415,9 +427,12 @@ class bst:
                 self.insert(r.right, key)
             else:
                 print("Duplicates are not allowed in BST")
+                
     def inOrder(self, root):
         if(root == None):
             return
         self.inOrder(root.left)
         print(root.val, end = " ")
         self.inOrder(root.right)
+    
+
