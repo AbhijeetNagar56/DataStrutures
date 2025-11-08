@@ -434,5 +434,149 @@ class bst:
         self.inOrder(root.left)
         print(root.val, end = " ")
         self.inOrder(root.right)
+
+
+class avl(bst):
+    def getHeight(self, root):
+        if root is None:
+            return 0
+        return root.height
+
+    def getBalance(self, root):
+        if root is None:
+            return 0
+        return self.getHeight(root.left) - self.getHeight(root.right)
+
+    def rightRotate(self, y):
+        x = y.left
+        T2 = x.right
+
+        x.right = y
+        y.left = T2
+
+        y.height = 1 + max(self.getHeight(y.left), self.getHeight(y.right)))
+        x.height = 1 + max(self.getHeight(x.left), self.getHeight(x.right)))
+
+        return x
+
+    def leftRotate(self, x):
+        y = x.right
+        T2 = y.left
+
+        y.left = x
+        x.right = T2
+
+        x.height = 1 + max(self.getHeight(x.left), self.getHeight(x.right)))
+        y.height = 1 + max(self.getHeight(y.left), self.getHeight(y.right)))
+
+        return y
+
+    def insert(self, root, key):
+        if root is None:
+            return node(key)
+        elif key < root.val:
+            root.left = self.insert(root.left, key)
+        else:
+            root.right = self.insert(root.right, key)
+
+        root.height = 1 + max(self.getHeight(root.left), self.getHeight(root.right)))
+
+        balance = self.getBalance(root)
+
+        if balance > 1 and key < root.left.val:
+            return self.rightRotate(root)
+
+        if balance < -1 and key > root.right.val:
+            return self.leftRotate(root)
+
+        if balance > 1 and key > root.left.val:
+            root.left = self.leftRotate(root.left)
+            return self.rightRotate(root)
+
+        if balance < -1 and key < root.right.val:
+            root.right = self.rightRotate(root.right)
+            return self.leftRotate(root)
+
+        return root
+    def delete(self, root, key):
+        if root is None:
+            return root
+        elif key < root.val:
+            root.left = self.delete(root.left, key)
+        elif key > root.val:
+            root.right = self.delete(root.right, key)
+        else:
+            if root.left is None:
+                temp = root.right
+                root = None
+                return temp
+            elif root.right is None:
+                temp = root.left
+                root = None
+                return temp
+            temp = self.minValueNode(root.right)
+            root.val = temp.val
+            root.right = self.delete(root.right, temp.val)
+
+        if root is None:
+            return root
+
+        root.height = 1 + max(self.getHeight(root.left), self.getHeight(root.right)))
+
+        balance = self.getBalance(root)
+
+        if balance > 1 and self.getBalance(root.left) >= 0:
+            return self.rightRotate(root)
+
+        if balance < -1 and self.getBalance(root.right) <= 0:
+            return self.leftRotate(root)
+
+        if balance > 1 and self.getBalance(root.left) < 0:
+            root.left = self.leftRotate(root.left)
+            return self.rightRotate(root)
+
+        if balance < -1 and self.getBalance(root.right) > 0:
+            root.right = self.rightRotate(root.right)
+            return self.leftRotate(root)
+
+        return root
+
+
+class hashTable:
+    def __init__(self, size=10):
+        self.size = size
+        self.table = [[] for _ in range(size)]
+
+    def hashFunction(self, key):
+        return hash(key) % self.size
+
+    def insert(self, key, value):
+        index = self.hashFunction(key)
+        for i, (k, v) in enumerate(self.table[index]):
+            if k == key:
+                self.table[index][i] = (key, value)
+                return
+        self.table[index].append((key, value))
+
+    def get(self, key):
+        index = self.hashFunction(key)
+        for k, v in self.table[index]:
+            if k == key:
+                return v
+        return None
+
+    def delete(self, key):
+        index = self.hashFunction(key)
+        for i, (k, v) in enumerate(self.table[index]):
+            if k == key:
+                del self.table[index][i]
+                return
+
+    def __str__(self):
+        return str(self.table)
+
+
+
+
     
 
