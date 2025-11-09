@@ -577,6 +577,49 @@ class hashTable:
 
 
 
+class graph:
+    def __init__(self):
+        self.adjList = {}
 
+    def addEdge(self, u, v):
+        if u not in self.adjList:
+            self.adjList[u] = []
+        self.adjList[u].append(v)
+
+    def removeEdge(self, u, v):
+        if u in self.adjList:
+            self.adjList[u].remove(v)
     
+    def levelorder(self, start):
+        visited = set()
+        q = queue()
+        q.enqueue(start)
+        visited.add(start)
+
+        while not q.isEmpty():
+            node = q.dequeue()
+            print(node, end=' ')
+
+            for neighbor in self.adjList.get(node, []):
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    q.enqueue(neighbor)
+
+    def dfs(self, start):
+        visited = set()
+        self._dfs_helper(start, visited)
+
+    def _dfs_helper(self, node, visited):
+        if node not in visited:
+            print(node, end=' ')
+            visited.add(node)
+            for neighbor in self.adjList.get(node, []):
+                if neighbor not in visited:
+                    self._dfs_helper(neighbor, visited)
+    
+
+    def __str__(self):
+        return str(self.adjList)
+
+# end of file
 
