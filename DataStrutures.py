@@ -621,5 +621,53 @@ class graph:
     def __str__(self):
         return str(self.adjList)
 
+
+# heap
+
+class heap:
+    def __init__(self):
+        self.heap = []
+
+    
+    def insert(self, key):
+        self.heap.append(key)
+        self._heapify_up(len(self.heap) - 1)
+    def _heapify_up(self, index):
+        parent = (index - 1) // 2
+        if index > 0 and self.heap[index] < self.heap[parent]:
+            self.heap[index], self.heap[parent] = self.heap[parent], self.heap[index]
+            self._heapify_up(parent)
+    
+    def extract_min(self):
+        if len(self.heap) == 0:
+            return None
+        if len(self.heap) == 1:
+            return self.heap.pop()
+        root = self.heap[0]
+        self.heap[0] = self.heap.pop()
+        self._heapify_down(0)
+        return root
+
+    def delete(self, key):
+        index = self.heap.index(key)
+        self.heap[index] = self.heap[-1]
+        self.heap.pop()
+        self._heapify_down(index)
+    
+    def _heapify_down(self, index):
+        smallest = index
+        left = 2 * index + 1
+        right = 2 * index + 2
+        if left < len(self.heap) and self.heap[left] < self.heap[smallest]:
+            smallest = left
+        if right < len(self.heap) and self.heap[right] < self.heap[smallest]:
+            smallest = right
+        if smallest != index:
+            self.heap[index], self.heap[smallest] = self.heap[smallest], self.heap[index]
+            self._heapify_down(smallest)
+
+    
+    def __str__(self):
+        return str(self.heap)
 # end of file
 
