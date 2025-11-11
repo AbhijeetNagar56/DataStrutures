@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Define the structure for a node
+
 struct Node {
     int data;
     struct Node* next;
 };
 
-// Function to add a new node at the end of the list
 void append(struct Node** head_ref, int new_data) {
     struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
     struct Node* last = *head_ref;
@@ -27,7 +26,6 @@ void append(struct Node** head_ref, int new_data) {
     last->next = new_node;
 }
 
-// Function to print the linked list
 void printList(struct Node* node) {
     while (node != NULL) {
         printf("%d -> ", node->data);
@@ -36,7 +34,6 @@ void printList(struct Node* node) {
     printf("NULL\n");
 }
 
-// Function to delete a node
 void deleteNode(struct Node** head_ref, int key) {
     struct Node* temp = *head_ref;
     struct Node* prev = NULL;
