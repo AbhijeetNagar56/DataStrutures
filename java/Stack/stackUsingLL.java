@@ -1,4 +1,3 @@
-package stack;
 
 class node {
     int data;

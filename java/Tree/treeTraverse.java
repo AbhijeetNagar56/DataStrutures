@@ -1,4 +1,4 @@
-package tree;
+
 import java.util.*;
 
 class Node {
