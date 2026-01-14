@@ -1,4 +1,4 @@
-package Algorithms;
+
 public class recursion3 {
     public static void printPermutation(String str, String perm, int idx) {
         if(str.length() == 0) {

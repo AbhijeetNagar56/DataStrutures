@@ -1,4 +1,3 @@
-package Algorithms;
 
 public class majorityElement {
     public static void quickSort(int[] arr, int low, int high) {

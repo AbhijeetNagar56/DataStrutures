@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class mainProgram {
     public static int average(int a, int b, int c) {

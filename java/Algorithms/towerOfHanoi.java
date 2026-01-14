@@ -1,4 +1,4 @@
-package Algorithms;
+
 public class towerOfHanoi {
     public static void solvetoh(int n, String s, String a, String e){
         if(n == 0) return;

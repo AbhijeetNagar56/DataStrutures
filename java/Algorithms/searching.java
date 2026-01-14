@@ -1,4 +1,4 @@
-package Algorithms;
+
 public class searching {
     // linear search
     public static int linear(int[] arr, int t) {

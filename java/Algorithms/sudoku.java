@@ -1,4 +1,3 @@
-package Algorithms;
 
 public class sudoku {
     public static boolean isSafe(char[][] board, int row, int col, int number) {
