@@ -34,7 +34,7 @@ class graph {
 }
 
 
-public class graph {
+public class graphMain {
     public static void main(String args[]) {
         graph g1 = new graph(3);
         g1.add(1, 2);
