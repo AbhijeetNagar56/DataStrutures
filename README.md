@@ -1,8 +1,4 @@
-# 🎯 Data Structures & Algorithms Mastery
-
-<div align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=25&duration=3000&pause=1000&color=00D9FF&center=true&vCenter=true&width=500&lines=100%2B+Solved+Problems;Multi-Language+Implementations;90+Days+DSA+Roadmap;Optimized+Solutions" alt="Typing SVG" />
-</div>
+# 🎯 Data Structures & Algorithms
 
 ---
 
