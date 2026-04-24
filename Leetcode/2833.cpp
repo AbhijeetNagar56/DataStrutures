@@ -23,3 +23,24 @@ public:
         return dist;
     }
 };
+
+// less variable optimized version
+class Solution {
+public:
+    int furthestDistanceFromOrigin(string moves) {
+        int blank_count = 0;
+        int dist = 0;
+
+        for (int i = 0; i < moves.size(); i++) {
+            if(moves.at(i) == '_') {
+                blank_count++;
+            }else if(moves.at(i) == 'L') {
+                dist--;
+            } else {
+                dist++;
+            } 
+        }
+
+        return blank_count + abs(dist);
+    }
+};
