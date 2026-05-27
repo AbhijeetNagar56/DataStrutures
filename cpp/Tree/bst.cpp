@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <string>
 using namespace std;
 
 class node {
@@ -104,6 +105,15 @@ public:
 			cout << endl;
 		}
     }
+	void encode(node* r, string& s) {
+        if(r == NULL) {
+            s += "N";
+            return;
+        }
+        encode(r, s);
+        s += to_string(r->val);
+        encode(r, s);
+    }
 };
 int main() {
 	// bst
@@ -114,14 +124,9 @@ int main() {
 	t.insert(t.root, 7);
 	t.insert(t.root, 12);
 	t.insert(t.root, 18);
-	t.inorder(t.root);
-	cout << endl;
-	t.preorder(t.root);
-	cout << endl;
-	t.postorder(t.root);
-	cout << endl;
 	t.levelOrder(t.root);
-	t.root = t.deleteNode(t.root, 5);
-	t.levelOrder(t.root);
+	string g;
+	t.encode(t.root, g);
+	cout << g << endl;
 	return 0;
 }
