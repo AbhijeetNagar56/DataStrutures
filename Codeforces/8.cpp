@@ -93,11 +93,17 @@
 // 		}
 // 		n /= 10;
 // 	}
-	
-// 	if(noOfLuckyDigits != 4 && noOfLuckyDigits != 7) {
-// 		isLucky = false;
+
+// 	bool nearlyLucky = true;
+// 	while(noOfLuckyDigits) {
+// 		long int digit = noOfLuckyDigits % 10;
+// 		if(digit != 4 && digit != 7) {
+// 			nearlyLucky = false;
+// 			break;
+// 		}
+// 		noOfLuckyDigits /= 10;
 // 	}
-// 	return isLucky;
+// 	return isLucky || nearlyLucky;
 // }
 // int main () {
 // 	long int n;
@@ -111,37 +117,68 @@
 // }
 
 // 96A
+// #include <iostream>
+// #include <string>
+// using namespace std;
+
+// bool isSafe(string& s) {
+// 	int freq = 0;
+// 	int key = 0;
+// 	for(int i = 0; i < s.length(); i++) {
+// 		if(s[i] == s[key]) {
+// 			freq++;
+// 		} else if(freq >= 7) {
+// 			return false;
+// 		} else {
+// 			key = i;
+// 			freq = 1;
+// 		}
+// 	}
+// 	if(freq >= 7) {
+// 		return false;
+// 	}
+// 	return true;
+// }
+// int main () {
+// 	string s;
+// 	cin >> s;
+// 	if(!isSafe(s)) {
+// 		cout << "YES" << endl;
+// 	} else {
+// 		cout << "NO" << endl;
+// 	}
+// 	return 0;
+// }
+
+
+// 734A
 #include <iostream>
 #include <string>
 using namespace std;
-// 00100110111111101
-// failed testcase output should be YES, but it is NO
-bool isSafe(string& s) {
-	int freq = 0;
-	int key = 0;
-	for(int i = 0; i < s.length(); i++) {
-		if(s[i] == s[key]) {
-			freq++;
-		} else if(freq >= 7) {
-			return false;
+
+int main() {
+	int n;
+	cin >> n;
+	char s[n];
+	for(int i=0; i<n; i++) {
+		cin >> s[i];
+	}
+
+	int a = 0, d = 0;
+	for(int i=0; i<n; i++) {
+		if(s[i] == 'A') {
+			a++;
 		} else {
-			key = i;
-			freq = 1;
+			d++;
 		}
 	}
-	if(freq >= 7) {
-		return false;
-	}
-	return true;
-}
-int main () {
-	string s;
-	cin >> s;
-	// yes for danger, no for safes
-	if(!isSafe(s)) {
-		cout << "YES" << endl;
+
+	if(a > d) {
+		cout << "Anton" << endl;
+	} else if(d > a) {
+		cout << "Danik" << endl;
 	} else {
-		cout << "NO" << endl;
+		cout << "Friendship" << endl;
 	}
 	return 0;
 }
