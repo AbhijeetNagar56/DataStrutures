@@ -1,17 +1,43 @@
 // 41A
-#include <iostream>
-#include <string>
-#include <algorithm>
-using namespace std;
+// #include <iostream>
+// #include <string>
+// #include <algorithm>
+// using namespace std;
 
+// int main() {
+//     string s, t;
+//     cin >> s >> t;
+//     reverse(t.begin(), t.end());
+//     if(s == t) {
+//         cout << "YES" << endl;
+//     } else {
+//         cout << "NO" << endl;
+//     }
+//     return 0;
+// }
+
+// 271A
+#include <iostream>
+#include <climits>
+using namespace std;
+bool isValid(int n) {
+    int v[10] = {0};
+    while(n) {
+        int d = n % 10;
+        if(v[d] != 0) return false;
+        v[d] = 1;
+        n/=10;
+    }
+    return true;
+}
 int main() {
-    string s, t;
-    cin >> s >> t;
-    reverse(t.begin(), t.end());
-    if(s == t) {
-        cout << "YES" << endl;
-    } else {
-        cout << "NO" << endl;
+    int n;
+    cin >> n;
+    for(int i=n+1; i<INT_MAX; i++) {
+        if(isValid(i)) {
+            cout << i << endl;
+            break;
+        }
     }
     return 0;
 }
