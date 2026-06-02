@@ -44,22 +44,42 @@
 
 
 // 677A
+// #include <iostream>
+// using namespace std;
+
+// int main() {
+//     int n, h;
+//     cin >> n >> h;
+//     int ans = 0;
+//     for(int i=0; i<n; i++) {
+// 	    int a;
+// 	    cin >> a;
+// 	    if(a > h) {
+// 		    ans += 2;
+// 	    } else {
+// 		    ans++;
+// 	    }
+//     }
+//     cout << ans << endl;
+//     return 0;
+// }
+
+
+// 116A
 #include <iostream>
 using namespace std;
 
 int main() {
-    int n, h;
-    cin >> n >> h;
-    int ans = 0;
-    for(int i=0; i<n; i++) {
-	    int a;
-	    cin >> a;
-	    if(a > h) {
-		    ans += 2;
-	    } else {
-		    ans++;
-	    }
-    }
-    cout << ans << endl;
-    return 0;
+	int stops;
+	cin >> stops;
+	int curr = 0;
+	int peak = 0;
+	while(stops--) {
+		int in, out;
+		cin >> out >> in;
+		curr = curr - out + in;
+		peak = max(peak, curr);
+	}
+	cout << peak << endl;
+	return 0;
 }
