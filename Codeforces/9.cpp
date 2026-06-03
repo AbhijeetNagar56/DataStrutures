@@ -66,20 +66,46 @@
 
 
 // 116A
+// #include <iostream>
+// using namespace std;
+
+// int main() {
+// 	int stops;
+// 	cin >> stops;
+// 	int curr = 0;
+// 	int peak = 0;
+// 	while(stops--) {
+// 		int in, out;
+// 		cin >> out >> in;
+// 		curr = curr - out + in;
+// 		peak = max(peak, curr);
+// 	}
+// 	cout << peak << endl;
+// 	return 0;
+// }
+
+
+// 1030A
 #include <iostream>
 using namespace std;
 
 int main() {
-	int stops;
-	cin >> stops;
-	int curr = 0;
-	int peak = 0;
-	while(stops--) {
-		int in, out;
-		cin >> out >> in;
-		curr = curr - out + in;
-		peak = max(peak, curr);
+	int n;
+	cin >> n;
+	bool easy = true;
+	for(int i=0; i<n; i++) {
+		int op;
+		cin >> op;
+		if(op == 1) {
+			easy = false;
+			break;
+		}
 	}
-	cout << peak << endl;
+
+	if(easy) {
+		cout << "EASY" << endl;
+	} else {
+		cout << "HARD" << endl;
+	}
 	return 0;
 }
