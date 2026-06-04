@@ -86,26 +86,51 @@
 
 
 // 1030A
-#include <iostream>
-using namespace std;
+// #include <iostream>
+// using namespace std;
 
+// int main() {
+// 	int n;
+// 	cin >> n;
+// 	bool easy = true;
+// 	for(int i=0; i<n; i++) {
+// 		int op;
+// 		cin >> op;
+// 		if(op == 1) {
+// 			easy = false;
+// 			break;
+// 		}
+// 	}
+
+// 	if(easy) {
+// 		cout << "EASY" << endl;
+// 	} else {
+// 		cout << "HARD" << endl;
+// 	}
+// 	return 0;
+// }
+
+// 266B
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
 int main() {
-	int n;
-	cin >> n;
-	bool easy = true;
+	int n, t;
+	cin >> n >> t;
+	string q;
+	q.resize(n);
 	for(int i=0; i<n; i++) {
-		int op;
-		cin >> op;
-		if(op == 1) {
-			easy = false;
-			break;
+		cin >> q[i];
+	}
+	while(t--) {
+		for(int i=1; i<n; i++) {
+			if(q[i] == 'G' && q[i-1] == 'B') {
+				swap(q[i], q[i-1]);
+				i++;
+			}
 		}
 	}
-
-	if(easy) {
-		cout << "EASY" << endl;
-	} else {
-		cout << "HARD" << endl;
-	}
+	cout << q << endl;
 	return 0;
 }
