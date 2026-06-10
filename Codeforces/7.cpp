@@ -60,20 +60,39 @@
 // }
 
 // 200 B
+// #include <iostream>
+// #include <iomanip>
+// using namespace std;
+// int main() {
+// 	int n;
+//     double sum=0; 
+// 	cin >> n;
+//     int cpy=n;
+//     while(n--) {
+//         int p;
+//         cin >> p;
+//         sum+=p;
+//     }
+//     double avg = sum / cpy;
+//     cout << fixed << setprecision(12) << avg << endl;
+// 	return 0;
+// }
+
+// 61A
 #include <iostream>
-#include <iomanip>
+#include <string>
 using namespace std;
+
 int main() {
-	int n;
-    double sum=0; 
-	cin >> n;
-    int cpy=n;
-    while(n--) {
-        int p;
-        cin >> p;
-        sum+=p;
+	string s, t, ans;
+	cin >> s >> t;
+    for(int i=0; i<s.length(); i++) {
+        if(s[i]!=t[i]) {
+            ans+="1";
+        } else {
+            ans+="0";
+        }
     }
-    double avg = sum / cpy;
-    cout << fixed << setprecision(12) << avg << endl;
+    cout << ans << endl;
 	return 0;
 }
