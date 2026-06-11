@@ -79,20 +79,39 @@
 // }
 
 // 61A
-#include <iostream>
-#include <string>
-using namespace std;
+// #include <iostream>
+// #include <string>
+// using namespace std;
 
+// int main() {
+// 	string s, t, ans;
+// 	cin >> s >> t;
+//     for(int i=0; i<s.length(); i++) {
+//         if(s[i]!=t[i]) {
+//             ans+="1";
+//         } else {
+//             ans+="0";
+//         }
+//     }
+//     cout << ans << endl;
+// 	return 0;
+// }
+
+// 1328A
+#include <iostream>
+using namespace std;
 int main() {
-	string s, t, ans;
-	cin >> s >> t;
-    for(int i=0; i<s.length(); i++) {
-        if(s[i]!=t[i]) {
-            ans+="1";
-        } else {
-            ans+="0";
+	int t;
+    cin >> t;
+    while(t--) {
+        int a, b;
+        cin >> a >> b;
+        if(a%b==0) {
+            cout << "0" << endl;
+            continue;
         }
+        int next= b*((a+b)/b) - a;
+        cout << next << endl;
     }
-    cout << ans << endl;
 	return 0;
 }
