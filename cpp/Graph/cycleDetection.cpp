@@ -20,42 +20,7 @@ public:
         adj[v].push_back(u);
     }
 
-    void bfs(int src) {
-        vector<bool> visited(V, false);
-        queue<int> q;
-        visited[src] = true;
-        q.push(src);
-
-        while(!q.empty()) {
-            int v = q.front();
-            q.pop();
-            cout << v << " ";
-            for(auto nbr: adj[v]) {
-                if(!visited[nbr]) {
-                    visited[nbr] = true;
-                    q.push(nbr);
-                }
-            }
-        }
-    }
-
-    void dfsHelper(int src, vector<bool>& visited) {
-        visited[src] = true;
-        cout << src << " ";
-        for(auto nbr: adj[src]) {
-            if(!visited[nbr]) {
-                dfsHelper(nbr, visited);
-            }
-        }
-    }
-
-    void dfs(int src) {
-        vector<bool> visited(V, false);
-        dfsHelper(src, visited);
-    }
-
-
-    // detect cycle
+    // detect cycle using dfs
     bool hasCycle(int src, int parent, vector<bool>& vis) {
         vis[src] = true;
         for(auto nbr: adj[src]) {
@@ -74,7 +39,7 @@ public:
     }
 
 
-    // cycle detection using dfs
+    // cycle detection using bfs
     bool hasCycle() {
         vector<bool> vis(V, false);
         queue<vector<int>> q;
