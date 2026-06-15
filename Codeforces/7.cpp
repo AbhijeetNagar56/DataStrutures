@@ -98,20 +98,42 @@
 // }
 
 // 1328A
+// #include <iostream>
+// using namespace std;
+// int main() {
+// 	int t;
+//     cin >> t;
+//     while(t--) {
+//         int a, b;
+//         cin >> a >> b;
+//         if(a%b==0) {
+//             cout << "0" << endl;
+//             continue;
+//         }
+//         int next= b*((a+b)/b) - a;
+//         cout << next << endl;
+//     }
+// 	return 0;
+// }
+
+// 520A
 #include <iostream>
+#include <unordered_set>
 using namespace std;
 int main() {
-	int t;
-    cin >> t;
-    while(t--) {
-        int a, b;
-        cin >> a >> b;
-        if(a%b==0) {
-            cout << "0" << endl;
-            continue;
-        }
-        int next= b*((a+b)/b) - a;
-        cout << next << endl;
+	int n;
+    cin >> n;
+    unordered_set<char> letters;
+    for(int i=0; i<n; i++) {
+        char ch;
+        cin >> ch;
+        letters.insert(tolower(ch));
     }
+    if(letters.size() == 26) {
+        cout << "YES";
+    } else {
+        cout << "NO";
+    }
+    cout << endl;
 	return 0;
 }
