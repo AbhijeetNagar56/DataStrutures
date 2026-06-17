@@ -35,28 +35,83 @@
 // }
 
 // 405A
+// #include <iostream>
+// using namespace std;
+// int main() {
+//     int n;
+//     cin >> n;
+//     int arr[n];
+//     for(int i = 0; i < n; i++) {
+//         cin >> arr[i];
+//     }
+//     // bubblesort
+//     for(int i=0; i<n; i++) {
+//         for(int j=0; j<n-1-i; j++) {
+//             if(arr[j] > arr[j+1]) {
+//                 int tmp = arr[j];
+//                 arr[j] = arr[j+1];
+//                 arr[j+1] = tmp;
+//             }
+//         }
+//     }
+//     for(int i=0; i<n; i++) {
+//         cout << arr[i] << " ";
+//     }
+//     cout << endl;
+//     return 0;
+// }
+
+
+// 469A
+// #include <iostream>
+// #include <unordered_set>
+// using namespace std;
+// int main() {
+//     int n, p;
+//     cin >> n;
+//     cin >> p;
+//     unordered_set<int> Set;
+//     for(int i=0; i<2*p; i++) {
+//         int a;
+//         cin >> a;
+//         Set.insert(a);
+//     }
+//     if(Set.size() == n) {
+//         cout << "I become the guy.";
+//     } else {
+//         cout << "Oh, my keyboard!";
+//     }
+//     cout << endl;
+//     return 0;
+// }
+
+
+// 144A
 #include <iostream>
+#include <vector>
 using namespace std;
 int main() {
     int n;
     cin >> n;
-    int arr[n];
-    for(int i = 0; i < n; i++) {
-        cin >> arr[i];
-    }
-    // bubblesort
+    vector<int> pos(n);
+    int Max = 0;
+    int Min = 0;
+
     for(int i=0; i<n; i++) {
-        for(int j=0; j<n-1-i; j++) {
-            if(arr[j] > arr[j+1]) {
-                int tmp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = tmp;
-            }
+        cin >> pos[i];
+    }
+
+    for(int i=0; i<n; i++) {
+        if(pos[Max] < pos[i]) {
+            Max = i;
+        }
+
+        if(pos[Min] >= pos[i]) {
+            Min = i;
         }
     }
-    for(int i=0; i<n; i++) {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
+    int time = Min < Max ? -1 : 0;
+    time += Max-0 + n - 1 - Min; 
+    cout << time << endl;
     return 0;
 }
