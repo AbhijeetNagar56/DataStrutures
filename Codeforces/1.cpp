@@ -87,31 +87,64 @@
 
 
 // 144A
+// #include <iostream>
+// #include <vector>
+// using namespace std;
+// int main() {
+//     int n;
+//     cin >> n;
+//     vector<int> pos(n);
+//     int Max = 0;
+//     int Min = 0;
+
+//     for(int i=0; i<n; i++) {
+//         cin >> pos[i];
+//     }
+
+//     for(int i=0; i<n; i++) {
+//         if(pos[Max] < pos[i]) {
+//             Max = i;
+//         }
+
+//         if(pos[Min] >= pos[i]) {
+//             Min = i;
+//         }
+//     }
+//     int time = Min < Max ? -1 : 0;
+//     time += Max-0 + n - 1 - Min; 
+//     cout << time << endl;
+//     return 0;
+// }
+
+
+// 996A
 #include <iostream>
 #include <vector>
 using namespace std;
 int main() {
-    int n;
-    cin >> n;
-    vector<int> pos(n);
-    int Max = 0;
-    int Min = 0;
-
-    for(int i=0; i<n; i++) {
-        cin >> pos[i];
-    }
-
-    for(int i=0; i<n; i++) {
-        if(pos[Max] < pos[i]) {
-            Max = i;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    long long amt;
+    cin >> amt;
+    long long ans=0;
+    while(amt) {
+        if(amt>=100) {
+            ans += amt/100;
+            amt = amt - 100*(amt/100);
+        } else if(amt>=20) {
+            ans += amt/20;
+            amt = amt - 20*(amt/20);
+        } else if(amt>=10) {
+            ans += amt/10;
+            amt = amt - 10*(amt/10);
+        } else if(amt>=5) {
+            ans += amt/5;
+            amt = amt - 5*(amt/5);
+        } else {
+            ans += amt;
+            amt = 0;
         }
-
-        if(pos[Min] >= pos[i]) {
-            Min = i;
-        }
     }
-    int time = Min < Max ? -1 : 0;
-    time += Max-0 + n - 1 - Min; 
-    cout << time << endl;
+    cout << ans << "\n";
     return 0;
 }
