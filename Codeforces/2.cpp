@@ -47,30 +47,55 @@
 // }
 
 // 148A
+// #include <iostream>
+// #include <vector>
+// using namespace std;
+// int main() {
+//     int k, l, m, n, d;
+//     cin >> k >> l >> m >> n >> d;
+//     vector<bool> damage(d, false);
+
+//     for(int i=k-1; i<d; i+=k) {
+//         damage[i]=true;
+//     }
+//     for(int i=l-1; i<d; i+=l) {
+//         damage[i]=true;
+//     }
+//     for(int i=m-1; i<d; i+=m) {
+//         damage[i]=true;
+//     }
+//     for(int i=n-1; i<d; i+=n) {
+//         damage[i]=true;
+//     }
+//     int ct = 0;
+//     for(bool d: damage) {
+//         if(d) ct++;
+//     }
+//     cout << ct << "\n";
+//     return 0;
+// }
+
+
+// 443A
 #include <iostream>
-#include <vector>
+#include <string>
+#include <sstream>
+#include <unordered_set>
 using namespace std;
 int main() {
-    int k, l, m, n, d;
-    cin >> k >> l >> m >> n >> d;
-    vector<bool> damage(d, false);
-
-    for(int i=k-1; i<d; i+=k) {
-        damage[i]=true;
+    string s;
+    getline(cin, s);
+    unordered_set<int> Set;
+    stringstream input(s);
+    int i=0;
+    while(i<s.length()) {
+        char ch;
+        input >> ch;
+        if(ch >= 'a' && ch <='z') {
+            Set.insert(ch);
+        }
+        i++;
     }
-    for(int i=l-1; i<d; i+=l) {
-        damage[i]=true;
-    }
-    for(int i=m-1; i<d; i+=m) {
-        damage[i]=true;
-    }
-    for(int i=n-1; i<d; i+=n) {
-        damage[i]=true;
-    }
-    int ct = 0;
-    for(bool d: damage) {
-        if(d) ct++;
-    }
-    cout << ct << "\n";
+    cout << Set.size() << "\n";
     return 0;
 }
