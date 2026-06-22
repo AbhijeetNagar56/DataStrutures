@@ -77,25 +77,55 @@
 
 
 // 443A
+// #include <iostream>
+// #include <string>
+// #include <sstream>
+// #include <unordered_set>
+// using namespace std;
+// int main() {
+//     string s;
+//     getline(cin, s);
+//     unordered_set<int> Set;
+//     stringstream input(s);
+//     int i=0;
+//     while(i<s.length()) {
+//         char ch;
+//         input >> ch;
+//         if(ch >= 'a' && ch <='z') {
+//             Set.insert(ch);
+//         }
+//         i++;
+//     }
+//     cout << Set.size() << "\n";
+//     return 0;
+// }
+
+// 479A
 #include <iostream>
-#include <string>
-#include <sstream>
-#include <unordered_set>
 using namespace std;
+
 int main() {
-    string s;
-    getline(cin, s);
-    unordered_set<int> Set;
-    stringstream input(s);
-    int i=0;
-    while(i<s.length()) {
-        char ch;
-        input >> ch;
-        if(ch >= 'a' && ch <='z') {
-            Set.insert(ch);
-        }
-        i++;
+    long long a, b, c;
+    cin >> a >> b >> c;
+    long long largest=0;
+    if(a+b+c>largest) {
+        largest = a+b+c;
     }
-    cout << Set.size() << "\n";
+    if(a*b*c > largest) {
+        largest = a*b*c;
+    }
+    if((a+b)*c > largest) {
+        largest = (a+b)*c;
+    }
+    if(a*(b+c)>largest) {
+        largest = a*(b+c);
+    }
+    if(a*b+c>largest) {
+        largest = a*b+c;
+    }
+    if(a+b*c>largest) {
+        largest = a+b*c;
+    }
+    cout << largest << "\n";
     return 0;
 }
