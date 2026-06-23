@@ -101,31 +101,76 @@
 // }
 
 // 479A
+// #include <iostream>
+// using namespace std;
+
+// int main() {
+//     long long a, b, c;
+//     cin >> a >> b >> c;
+//     long long largest=0;
+//     if(a+b+c>largest) {
+//         largest = a+b+c;
+//     }
+//     if(a*b*c > largest) {
+//         largest = a*b*c;
+//     }
+//     if((a+b)*c > largest) {
+//         largest = (a+b)*c;
+//     }
+//     if(a*(b+c)>largest) {
+//         largest = a*(b+c);
+//     }
+//     if(a*b+c>largest) {
+//         largest = a*b+c;
+//     }
+//     if(a+b*c>largest) {
+//         largest = a+b*c;
+//     }
+//     cout << largest << "\n";
+//     return 0;
+// }
+
+// 1742A
 #include <iostream>
+#include <queue>
 using namespace std;
 
+void solve() {
+    priority_queue<long long> pq;
+    long long sum = 0;
+
+    for(int i=0; i<3; i++) {
+        long long n;
+        cin >> n;
+        sum+=n;
+        pq.push(n);
+    }
+
+    long long left = 0;
+    bool valid = false;
+    while(pq.size()>0) {
+        long long n = pq.top();
+        pq.pop();
+        left += n;
+        sum -= n;
+        if(left == sum) {
+            valid = true;
+            break;
+        }
+    }
+    if(valid) {
+        cout << "YES";
+    } else {
+        cout << "NO";
+    }
+    cout << "\n";
+}
+
 int main() {
-    long long a, b, c;
-    cin >> a >> b >> c;
-    long long largest=0;
-    if(a+b+c>largest) {
-        largest = a+b+c;
+    int t;
+    cin >> t;
+    while(t--) {
+        solve();
     }
-    if(a*b*c > largest) {
-        largest = a*b*c;
-    }
-    if((a+b)*c > largest) {
-        largest = (a+b)*c;
-    }
-    if(a*(b+c)>largest) {
-        largest = a*(b+c);
-    }
-    if(a*b+c>largest) {
-        largest = a*b+c;
-    }
-    if(a+b*c>largest) {
-        largest = a+b*c;
-    }
-    cout << largest << "\n";
     return 0;
 }
