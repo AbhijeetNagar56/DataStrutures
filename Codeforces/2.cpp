@@ -131,46 +131,83 @@
 // }
 
 // 1742A
+// #include <iostream>
+// #include <queue>
+// using namespace std;
+
+// void solve() {
+//     priority_queue<long long> pq;
+//     long long sum = 0;
+
+//     for(int i=0; i<3; i++) {
+//         long long n;
+//         cin >> n;
+//         sum+=n;
+//         pq.push(n);
+//     }
+
+//     long long left = 0;
+//     bool valid = false;
+//     while(pq.size()>0) {
+//         long long n = pq.top();
+//         pq.pop();
+//         left += n;
+//         sum -= n;
+//         if(left == sum) {
+//             valid = true;
+//             break;
+//         }
+//     }
+//     if(valid) {
+//         cout << "YES";
+//     } else {
+//         cout << "NO";
+//     }
+//     cout << "\n";
+// }
+
+// int main() {
+//     int t;
+//     cin >> t;
+//     while(t--) {
+//         solve();
+//     }
+//     return 0;
+// }
+
+//510A 
 #include <iostream>
-#include <queue>
 using namespace std;
+void draw(int n, int m) {
+    bool isRight = true;
+    for(int i=0; i<n; i++) {
+        if(i % 2 != 0) {
+            if(!isRight) {
+                cout << "#";
+            } else {
+                cout << ".";
+            }
+            for(int j=0; j<m-2; j++) {
+                cout << ".";
+            }
+            if(isRight) {
+                cout << "#";
+            } else {
+                cout << ".";
+            }
 
-void solve() {
-    priority_queue<long long> pq;
-    long long sum = 0;
-
-    for(int i=0; i<3; i++) {
-        long long n;
-        cin >> n;
-        sum+=n;
-        pq.push(n);
-    }
-
-    long long left = 0;
-    bool valid = false;
-    while(pq.size()>0) {
-        long long n = pq.top();
-        pq.pop();
-        left += n;
-        sum -= n;
-        if(left == sum) {
-            valid = true;
-            break;
+            isRight = !isRight;
+        } else {
+            for(int j=0; j<m; j++) {
+                cout << "#";
+            }
         }
+        cout << "\n";
     }
-    if(valid) {
-        cout << "YES";
-    } else {
-        cout << "NO";
-    }
-    cout << "\n";
 }
-
 int main() {
-    int t;
-    cin >> t;
-    while(t--) {
-        solve();
-    }
+    int n, m;
+    cin >> n >> m;
+    draw(n, m);
     return 0;
 }
