@@ -15,18 +15,12 @@ The project is organized by language and specific data structures for easy navig
 
 | Directory | Content Description | Key Focus |
 | :--- | :--- | :--- |
-| **`📁 90_days_problems`** | Daily challenges & Roadmap | Consistency & Progress |
+| **`📁 Codeforces`** | Solved problem on Codeforces | Consistency & Progress |
+| **`📁 Leetcode`** | Solved problem on Leetcode | Consistency & Progress |
 | **`📁 c`** | Low-level DS implementations | Memory Management & Pointers |
 | **`📁 cpp`** | STL & Advanced Algorithms | Speed & Efficiency |
 | **`📁 java`** | OOP-based Data Structures | Robustness & Design Patterns |
 | **`📁 python`** | Scripting & Rapid Prototyping | Readability & Logic |
-
----
-
-### 🗺️ The 90-Day DSA Roadmap
-I am currently following a structured path to mastery. You can find the detailed plan here:
-- 📑 **[Download 90 Days DSA Roadmap PDF](./90_days_problems/01_Month/90_Days_DSA_Roadmap.pdf)**
-- 📈 **Current Progress:** `Month 01` - Fundamentals & Linear Data Structures.
 
 ---
 
@@ -46,6 +40,8 @@ Each language folder contains a dedicated shell script (`c.sh`, `cpp.sh`) to str
 
 **To run a C++ solution:**
 ```bash
-cd cpp
-bash cpp.sh # Or compile manually: g++ filename.cpp -o out && ./out
+cd cpp # Place cpp.sh in working dir
+bash cpp.sh <filename> # Or compile manually: g++ filename.cpp -o out && ./out
 ```
+
+***Made for Study Purposes Only***
