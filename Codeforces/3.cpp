@@ -39,16 +39,45 @@
 
 
 // 50A
+// #include <iostream>
+// using namespace std;
+
+// int main() {
+//     long long n, m;
+//     cin >> n >> m;
+
+//     long long ans = (n * m) / 2;
+
+//     cout << ans << endl;
+
+//     return 0;
+// }
+
+
+// 133A
 #include <iostream>
+#include <string>
 using namespace std;
 
+bool prints(string& s) {
+    for(auto& c: s) {
+        if(c == 'H' || c == 'Q' || c == '9') {
+            return true;
+        }
+    }
+    return false;
+}
+
 int main() {
-    long long n, m;
-    cin >> n >> m;
-
-    long long ans = (n * m) / 2;
-
-    cout << ans << endl;
-
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    string in;
+    getline(cin, in);
+    if(prints(in)) {
+        cout << "YES";
+    } else {
+        cout << "NO";
+    }
+    cout << "\n";
     return 0;
 }
