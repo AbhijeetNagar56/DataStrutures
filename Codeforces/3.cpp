@@ -55,29 +55,63 @@
 
 
 // 133A
+// #include <iostream>
+// #include <string>
+// using namespace std;
+
+// bool prints(string& s) {
+//     for(auto& c: s) {
+//         if(c == 'H' || c == 'Q' || c == '9') {
+//             return true;
+//         }
+//     }
+//     return false;
+// }
+
+// int main() {
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(NULL);
+//     string in;
+//     getline(cin, in);
+//     if(prints(in)) {
+//         cout << "YES";
+//     } else {
+//         cout << "NO";
+//     }
+//     cout << "\n";
+//     return 0;
+// }
+
+
+// 1352A
 #include <iostream>
-#include <string>
+#include <vector>
 using namespace std;
-
-bool prints(string& s) {
-    for(auto& c: s) {
-        if(c == 'H' || c == 'Q' || c == '9') {
-            return true;
-        }
+void solve() {
+    long long num;
+    cin >> num;
+    int div = 10;
+    vector<int> sums;
+    while(num / div) {
+        int a = num % div;
+        if(a != 0) sums.push_back(a);
+        num = (num / div) * div;
+        div *= 10;
     }
-    return false;
+    sums.push_back(num % div);
+    cout << sums.size() << "\n";
+    for(int i=sums.size() - 1; i>=0; i--) {
+        cout << sums[i] << " ";
+    }
+    cout << "\n";
 }
-
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    string in;
-    getline(cin, in);
-    if(prints(in)) {
-        cout << "YES";
-    } else {
-        cout << "NO";
+    int t;
+    cin >> t;
+    while(t--) {
+        solve();
     }
-    cout << "\n";
     return 0;
 }
