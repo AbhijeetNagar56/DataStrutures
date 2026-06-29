@@ -84,34 +84,72 @@
 
 
 // 1352A
+// #include <iostream>
+// #include <vector>
+// using namespace std;
+// void solve() {
+//     long long num;
+//     cin >> num;
+//     int div = 10;
+//     vector<int> sums;
+//     while(num / div) {
+//         int a = num % div;
+//         if(a != 0) sums.push_back(a);
+//         num = (num / div) * div;
+//         div *= 10;
+//     }
+//     sums.push_back(num % div);
+//     cout << sums.size() << "\n";
+//     for(int i=sums.size() - 1; i>=0; i--) {
+//         cout << sums[i] << " ";
+//     }
+//     cout << "\n";
+// }
+// int main() {
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(NULL);
+//     int t;
+//     cin >> t;
+//     while(t--) {
+//         solve();
+//     }
+//     return 0;
+// }
+
+// 268A
 #include <iostream>
 #include <vector>
 using namespace std;
-void solve() {
-    long long num;
-    cin >> num;
-    int div = 10;
-    vector<int> sums;
-    while(num / div) {
-        int a = num % div;
-        if(a != 0) sums.push_back(a);
-        num = (num / div) * div;
-        div *= 10;
+
+int solve(int n, vector<int>& h, vector<int>& a) {
+    int count = 0;
+
+    for(int i=0; i<n; i++) {
+        int home = h[i];
+
+        for(int j=0; j<n; j++) {
+            if(i==j) continue;
+            if(a[j] == home) {
+                count++;
+            }
+        }
     }
-    sums.push_back(num % div);
-    cout << sums.size() << "\n";
-    for(int i=sums.size() - 1; i>=0; i--) {
-        cout << sums[i] << " ";
-    }
-    cout << "\n";
+
+    return count;
 }
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int t;
-    cin >> t;
-    while(t--) {
-        solve();
+    int n;
+    cin >> n;
+    vector<int> h(n, 0);
+    vector<int> a(n, 0);
+    int i=0;
+    while(i<n) {
+        cin >> h[i] >> a[i];
+        i++;
     }
+    cout << solve(n, h, a) << "\n";
     return 0;
 }
