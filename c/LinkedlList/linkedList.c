@@ -7,7 +7,7 @@ struct Node {
     struct Node* next;
 };
 
-void insert(struct Node** head_ref, int new_data) {
+void append(struct Node** head_ref, int new_data) {
     struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
     struct Node* last = *head_ref;
 
@@ -22,28 +22,53 @@ void insert(struct Node** head_ref, int new_data) {
     while (last->next != NULL) {
         last = last->next;
     }
+
     last->next = new_node;
 }
 
-void deleteNode(struct Node** head, int key) {
-    if (*head == NULL) {
-        printf("List is empty!!");
+void printList(struct Node* node) {
+    while (node != NULL) {
+        printf("%d -> ", node->data);
+        node = node->next;
+    }
+    printf("NULL\n");
+}
+
+void deleteNode(struct Node** head_ref, int key) {
+    struct Node* temp = *head_ref;
+    struct Node* prev = NULL;
+
+    if (temp != NULL && temp->data == key) {
+        *head_ref = temp->next;
+        free(temp);
         return;
     }
 
-    struct Node* temp = *head;
-    struct Node* pre = NULL;
-    if (temp->next != NULL) {
+    while (temp != NULL && temp->data != key) {
+        prev = temp;
         temp = temp->next;
     }
+
+    if (temp == NULL) return;
+
+    prev->next = temp->next;
+    free(temp);
 }
-
-
 
 int main() {
     struct Node* head = NULL;
 
+    append(&head, 1);
+    append(&head, 2);
+    append(&head, 3);
+    append(&head, 4);
+
+    printf("Created Linked list: ");
+    printList(head);
+
+    deleteNode(&head, 3);
+    printf("Linked list after deletion of 3: ");
+    printList(head);
 
     return 0;
 }
-
