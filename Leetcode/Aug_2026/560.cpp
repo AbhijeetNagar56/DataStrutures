@@ -19,3 +19,20 @@ public:
         return count;
     }
 };
+
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        int n = nums.size();
+        unordered_map<int, int> prefix_count = {{0, 1}};
+        int prefix_sum = 0, count = 0;
+        for(int i=0; i<n; i++) {
+            prefix_sum += nums[i];
+            if(prefix_count.find(prefix_sum-k) != prefix_count.end()) {
+                count += prefix_count[prefix_sum-k];
+            }
+            prefix_count[prefix_sum]++;
+        }
+        return count;
+    }
+};
