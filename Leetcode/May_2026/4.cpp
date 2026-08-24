@@ -29,3 +29,33 @@ public:
         return med;
     }
 };
+
+
+// space optimal
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int m = nums1.size();
+        int n = nums2.size();
+        int s = m + n;
+        int medianIdx = s / 2;
+        
+        int last = -1, curr = -1;
+        int i = 0, j = 0;
+        
+        for (int k = 0; k <= medianIdx; k++) {
+            last = curr;
+            if (i < m && (j >= n || nums1[i] <= nums2[j])) {
+                curr = nums1[i++];
+            } else {
+                curr = nums2[j++];
+            }
+        }
+        
+        if (s % 2 == 0) {
+            return (last + curr) / 2.0;
+        } else {
+            return curr;
+        }
+    }
+};
